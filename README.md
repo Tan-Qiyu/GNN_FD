@@ -11,3 +11,5 @@ Secondly, in order to compare the effects of different parameters on the experim
 Finally, you can choose to use confusion matrix and tsne to visualize all the results and the features of each layer of network respectively.
 
 Please contact me by email 929796695@qq.com If you have any questions.
+
+注：Please setting 图神经网络 as root source when you run code.
