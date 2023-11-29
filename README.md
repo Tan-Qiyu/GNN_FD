@@ -3,7 +3,7 @@
 
 Date: 2022/9/28 23:46
 Author: Tan Qiyu
-Code: https://github.com/Tan-Qiyu/GNN_FD
+Home: https://github.com/Tan-Qiyu
 
 Instructions:
 First, the implement is include CWRU、SEU、XJTU、JNU、MFPT、UoC、DC all 7 public fault datasets.
