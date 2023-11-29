@@ -3,7 +3,7 @@
 
 # Date: 2022/9/28 23:46
 # Author: Tan Qiyu
-# E-mail 929796695@qq.com
+# E-mail：929796695@qq.com
 # Home: https://github.com/Tan-Qiyu
 
 Instructions:
