@@ -1,6 +1,6 @@
-# GNN_FD
- Topic: Graph Neural network for Fault Diagnosis
- 
+# Graph Neural network for Fault Diagnosis
+# 基于图神经网络的故障诊断
+
 Date: 2022/9/28 23:46
 Author: Tan Qiyu
 Code: https://github.com/Tan-Qiyu/GNN_FD
