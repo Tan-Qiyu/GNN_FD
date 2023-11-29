@@ -1,10 +1,10 @@
 # Graph Neural network for Fault Diagnosis
 # 基于图神经网络的故障诊断
 
-# Date: 2022/9/28 23:46
-# Author: Tan Qiyu
-# E-mail：929796695@qq.com
-# Home: https://github.com/Tan-Qiyu
+Date: 2022/9/28 23:46
+Author: Tan Qiyu
+E-mail：929796695@qq.com
+Home: https://github.com/Tan-Qiyu
 
 Instructions:
 First, the implement is include CWRU、SEU、XJTU、JNU、MFPT、UoC、DC all 7 public fault datasets.
