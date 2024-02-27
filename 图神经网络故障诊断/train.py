@@ -62,6 +62,7 @@ graph_type：  振动信号构造的图类型
     knn_graph        # K近邻图
     complete_graph   # 完全图
     ER_graphER       # ER随机图
+    visibility_graph # 可视图
 
 knn_K：  K近邻图的k值
 

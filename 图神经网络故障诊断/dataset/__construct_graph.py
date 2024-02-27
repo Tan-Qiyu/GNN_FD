@@ -145,6 +145,36 @@ def ER_graph(data,edge_type,label,edge_norm,p):
 
     return graph
 
+#可视图
+def Visibility_graph(data,direction,edge_type,label,edge_norm):
+    '''
+    :param data: 每个图的节点特征
+    :param direction:有向图、无向图
+    :param edge_type: 边加权方式
+    :param label: 节点标签
+    :param edge_norm: 边权重是否归一化
+    :return: visibility graph
+    '''
+    data = (data[:, :, 1] if data.shape[-1] == 2 else data)  # 若取时域+频域信号，则计算频域信号的皮尔森相关系数进行GNN
+    x = torch.tensor(data, dtype=torch.float)  # 节点特征
+
+    series = torch.sum(x,dim=1)  #将节点特征求和作为可视图节点的幅值
+    G = visibility_graph(series)  #返回graph
+    edge_index = G.edges()  #此处取出的edge_index为有向边，即不满足对称性
+    edge_index = list(edge_index)
+    edge_index = torch.tensor(edge_index, dtype=torch.long)
+    edge_index = edge_index.t().contiguous()
+    if direction == 'undirected':
+        edge_index = torch.cat((edge_index, edge_index.roll(1, dims=0)), dim=1)  # 构建无向边
+
+    edge_attr = edge_weight(x=x, edge_index=edge_index, distance_type=edge_type, edge_norm=edge_norm)
+    edge_attr = torch.tensor(edge_attr, dtype=torch.float32)  # 边权重
+    y = torch.tensor(label * np.ones(data.shape[0]), dtype=torch.long)  # 节点标签
+
+    graph = Data(x=x, edge_index=edge_index, y=y, edge_attr=edge_attr)  # 图
+
+    return graph
+
 def generate_graph(feature,graph_type,node_num,direction,edge_type,edge_norm,K,p):
     '''
     :param feature: shape (classes，sample_num，sample_length)  classes-故障类型数；sample_num-每种故障样本数；sample_length-每个样本长度
@@ -176,6 +206,8 @@ def generate_graph(feature,graph_type,node_num,direction,edge_type,edge_norm,K,p
                 graph = complete_graph(data=a_graph_fea,edge_type=edge_type,label=label,edge_norm=edge_norm)
             elif graph_type == 'ER_graph':
                 graph = ER_graph(data=a_graph_fea,edge_type=edge_type,label=label,edge_norm=edge_norm,p=p)
+            elif graph_type == 'visibility_graph':
+                graph = Visibility_graph(data=a_graph_fea, edge_type=edge_type, label=label, edge_norm=edge_norm,direction=direction)                
             else:
                 print('this graph is not existed!!!')
 
